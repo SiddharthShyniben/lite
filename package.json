@@ -1,0 +1,18 @@
+{
+	"name": "lite",
+	"version": "1.0.0",
+	"description": "A lite HTML build step",
+	"main": "index.js",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SiddharthShyniben/lite.git"
+	},
+	"author": "Siddharth Shyniben <siddharth.muscat@gmail.com>",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/SiddharthShyniben/lite/issues"
+	},
+	"homepage": "https://github.com/SiddharthShyniben/lite#readme",
+	"type": "module"
+}

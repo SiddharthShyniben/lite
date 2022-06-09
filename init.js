@@ -1,7 +1,11 @@
-import {copyFileSync, existsSync, lstatSync, mkdirSync, readdirSync} from 'fs';
-import {dirname, join} from 'path';
+import {readdirSync} from 'node:fs';
+import {dirname, join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+import {copyFolder} from './util.js';
+
 import prompts from 'prompts';
-import {fileURLToPath} from 'url';
+import signale from 'signale';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -18,30 +22,11 @@ export default async function() {
 		});
 
 		if (!confirm) {
+			signale.fatal('Aborted');
 			process.exit(1);
 		}
 	}
 
 	copyFolder(join(__dirname, 'template'), cwd);
-	console.log('Project initialized.');
-}
-
-// Copies a folder's contents recursively to another folder
-function copyFolder(source, target) {
-	const files = readdirSync(source);
-
-	if (!existsSync(target)) {
-		mkdirSync(target);
-	}
-
-	for (const file of files) {
-		const sourcePath = join(source, file);
-		const targetPath = join(target, file);
-
-		if (lstatSync(sourcePath).isDirectory()) {
-			copyFolder(sourcePath, targetPath);
-		} else {
-			copyFileSync(sourcePath, targetPath);
-		}
-	}
+	signale.success('Project initialized');
 }
